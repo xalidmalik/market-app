@@ -13,8 +13,19 @@ export const BasketSlice = createSlice({
   initialState,
   reducers: {
     addToBasketSaga: (_, action: PayloadAction<Array<BasketType>>) => {},
-    setAddBasket: (state, action: PayloadAction<Array<BasketType>>) => {
+    incrementBasketItemSaga: (
+      _,
+      action: PayloadAction<Array<BasketType>>
+    ) => {},
+    decrementBasketItemSaga: (
+      _,
+      action: PayloadAction<Array<BasketType>>
+    ) => {},
+    setBasket: (state, action: PayloadAction<Array<BasketType>>) => {
       state.data = action.payload;
+    },
+    setTotal: (state, action: PayloadAction<number>) => {
+      state.total = action.payload;
     },
     setBasketLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;
@@ -27,9 +38,12 @@ export const BasketSlice = createSlice({
 
 export const {
   addToBasketSaga,
-  setAddBasket,
+  setBasket,
   setBasketLoading,
   setBasketError,
+  setTotal,
+  incrementBasketItemSaga,
+  decrementBasketItemSaga,
 } = BasketSlice.actions;
 
 export default BasketSlice.reducer;

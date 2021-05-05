@@ -3,7 +3,7 @@ import { Input } from "@chakra-ui/input";
 import { HStack, Text, VStack } from "@chakra-ui/layout";
 import React from "react";
 import { useDispatch } from "react-redux";
-import { addToBasketSaga } from "store/slices/basket";
+import { addToBasketSaga, decrementBasketItemSaga } from "store/slices/basket";
 import { BasketType } from "store/types/basket";
 
 export const BasketItem = (item: BasketType) => {
@@ -12,6 +12,10 @@ export const BasketItem = (item: BasketType) => {
   const handleAddToBasket = () => {
     dispatch({ type: addToBasketSaga.type, payload: item });
   };
+  const handledecrementItem = () => {
+    dispatch({ type: decrementBasketItemSaga.type, payload: item });
+  };
+
   return (
     <HStack
       py="4"
@@ -28,7 +32,13 @@ export const BasketItem = (item: BasketType) => {
         </Text>
       </VStack>
       <HStack spacing="1">
-        <Button variant="unstyled" size="sm" color="cyan.500" fontSize="20px">
+        <Button
+          variant="unstyled"
+          size="sm"
+          color="cyan.500"
+          fontSize="20px"
+          onClick={() => handledecrementItem()}
+        >
           -
         </Button>
         <Input
