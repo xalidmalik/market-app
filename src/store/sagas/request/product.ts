@@ -3,7 +3,7 @@ import { FilteringType, PaginationType } from "store/types/product";
 
 export const requestFetchProduct = async () => {
   return await axios.request({
-    url: " http://localhost:3005/products",
+    url: "https://market-app-json-server.herokuapp.com/products",
     method: "GET",
   });
 };
@@ -12,7 +12,7 @@ export const requestFetchPaginatedProduct = async (
   filter?: FilteringType
 ) => {
   return await axios.request({
-    url: " http://localhost:3005/products",
+    url: "https://market-app-json-server.herokuapp.com/products",
     method: "GET",
     params: {
       ...param,

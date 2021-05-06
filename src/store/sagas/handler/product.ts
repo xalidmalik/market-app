@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { call, delay, put, select, takeLatest } from "redux-saga/effects";
+import { call, put, select, takeLatest } from "redux-saga/effects";
 import {
   fetchProduct,
   setProductData,
@@ -20,7 +20,6 @@ export function* fetchProductSaga() {
       requestFetchPaginatedProduct(Param, Fiter)
     );
     yield calculateAndSetInfo(result.headers["x-total-count"]);
-    yield delay(500);
     yield put(setProductData(result.data));
     yield put(setProductLoading(false));
   } catch (e) {

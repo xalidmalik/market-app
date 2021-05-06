@@ -1,5 +1,5 @@
 import { AxiosResponse } from "axios";
-import { call, delay, put, select, takeLatest } from "redux-saga/effects";
+import { call, put, select, takeLatest } from "redux-saga/effects";
 import {
   setBrandData,
   setBrandError,
@@ -66,7 +66,6 @@ export function* fetchFilterSaga() {
       yield put(setTagLoading(true));
       const resultBrand: AxiosResponse = yield call(requestFetchBrand);
       const resultProduct: AxiosResponse = yield call(requestFetchProduct);
-      yield delay(500);
       yield setBrandSaga(resultProduct.data, resultBrand.data);
       yield setTagSaga(resultProduct.data);
     }

@@ -1,4 +1,4 @@
-import { delay, put, select, takeLatest } from "@redux-saga/core/effects";
+import { put, select, takeLatest } from "@redux-saga/core/effects";
 import { BasketSelector } from "store/selectors/basket";
 import {
   addToBasketSaga,
@@ -60,7 +60,6 @@ export function* addBasketSaga(action: any) {
   const cardHaveItem: BasketType = yield data.find(
     (item) => item.product.slug === payload.product.slug
   );
-  yield delay(1000);
   if (cardHaveItem) {
     yield incrementBasketItem(data, payload);
   } else {

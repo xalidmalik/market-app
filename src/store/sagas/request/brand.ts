@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const requestFetchBrand = async () => {
   return await axios.request({
-    url: " http://localhost:3005/brands",
+    url: " https://market-app-json-server.herokuapp.com/brands",
     method: "GET",
   });
 };
