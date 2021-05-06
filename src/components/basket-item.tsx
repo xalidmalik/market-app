@@ -1,12 +1,12 @@
 import { Button } from "@chakra-ui/button";
 import { Input } from "@chakra-ui/input";
 import { HStack, Text, VStack } from "@chakra-ui/layout";
-import React from "react";
+import React, { memo } from "react";
 import { useDispatch } from "react-redux";
 import { addToBasketSaga, decrementBasketItemSaga } from "store/slices/basket";
 import { BasketType } from "store/types/basket";
 
-export const BasketItem = (item: BasketType) => {
+export const BasketItem = memo((item: BasketType) => {
   const dispatch = useDispatch();
 
   const handleAddToBasket = () => {
@@ -64,4 +64,4 @@ export const BasketItem = (item: BasketType) => {
       </HStack>
     </HStack>
   );
-};
+});

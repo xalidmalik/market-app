@@ -1,8 +1,9 @@
 import { Box } from "@chakra-ui/layout";
 import { useRadio } from "@chakra-ui/radio";
 import { Svg } from "assets/svgs";
+import { memo } from "react";
 
-export const Radio = (props: any) => {
+export const Radio = memo((props: any) => {
   const {
     getInputProps,
     getCheckboxProps,
@@ -47,4 +48,4 @@ export const Radio = (props: any) => {
       {props.children}
     </Box>
   );
-};
+});

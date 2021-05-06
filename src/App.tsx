@@ -1,8 +1,8 @@
+import { Footer } from "containers/layout/footer";
+import { Header } from "containers/layout/header";
+import { Layout } from "containers/layout/layout";
 import { Basket } from "containers/main/basket";
 import { Filter } from "containers/main/filter";
-import { Footer } from "containers/main/footer";
-import { Header } from "containers/main/header";
-import { Layout } from "containers/main/layout";
 import { Main } from "containers/main/main";
 import React from "react";
 

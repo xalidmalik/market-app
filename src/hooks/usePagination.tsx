@@ -26,10 +26,9 @@ export const usePagination = () => {
             (page <= pagination._page + 2 && page > pagination._page - 2) ||
             page > info.total_page - 3
           ) {
-            return preparedArray.push(page), console.log("page", page);
-          } else if (info.total_page === 0) {
-            console.log("else", page);
+            return preparedArray.push(page);
           }
+          return {};
         }
       );
       for (let page of preparedArray) {

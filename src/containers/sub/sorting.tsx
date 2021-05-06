@@ -2,7 +2,7 @@ import { VStack } from "@chakra-ui/layout";
 import { useRadioGroup } from "@chakra-ui/radio";
 import { BoxContainer } from "components/box-container";
 import { Radio } from "components/radio";
-import React from "react";
+import React, { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductSelector } from "store/selectors/product";
 import { setPagination } from "store/slices/product";
@@ -19,7 +19,7 @@ const options: Array<SortOptionType> = [
   { name: "Old to new", sort_order: "date-desc" },
 ];
 
-export const Sorting = () => {
+export const Sorting = memo(() => {
   const dispatch = useDispatch();
   const Pagination = useSelector(ProductSelector.Pagination);
   const { getRootProps, getRadioProps } = useRadioGroup({
@@ -55,4 +55,4 @@ export const Sorting = () => {
       </VStack>
     </BoxContainer>
   );
-};
+});

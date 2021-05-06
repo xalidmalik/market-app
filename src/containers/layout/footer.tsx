@@ -1,7 +1,7 @@
 import { HStack, Text } from "@chakra-ui/layout";
-import React from "react";
+import React, { memo } from "react";
 
-export const Footer = () => {
+export const Footer = memo(() => {
   return (
     <HStack
       justify="center"
@@ -9,8 +9,12 @@ export const Footer = () => {
       paddingBottom="10"
       paddingTop="36"
       display="flex"
+      spacing="6"
+      color="cyan.500"
     >
-      <Text>I am Footer</Text>
+      <Text>©2019 Market</Text>
+      <Text>•</Text>
+      <Text>Privacy Policy</Text>
     </HStack>
   );
-};
+});

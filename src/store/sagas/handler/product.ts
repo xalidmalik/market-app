@@ -19,7 +19,6 @@ export function* fetchProductSaga() {
     const result: AxiosResponse = yield call(() =>
       requestFetchPaginatedProduct(Param, Fiter)
     );
-    yield console.log("axios result", result);
     yield calculateAndSetInfo(result.headers["x-total-count"]);
     yield delay(500);
     yield put(setProductData(result.data));

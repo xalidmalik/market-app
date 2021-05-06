@@ -2,12 +2,12 @@ import { Button, ButtonGroup } from "@chakra-ui/button";
 import { VStack } from "@chakra-ui/layout";
 import { Svg } from "assets/svgs";
 import { usePagination } from "hooks/usePagination";
-import React from "react";
+import React, { memo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ProductSelector } from "store/selectors/product";
 import { setPagination } from "store/slices/product";
 
-export const Pagination = () => {
+export const Pagination = memo(() => {
   const { pagination, info } = useSelector(ProductSelector.State);
   const dispatch = useDispatch();
   const ElementArrays = usePagination();
@@ -45,4 +45,4 @@ export const Pagination = () => {
       </ButtonGroup>
     </VStack>
   );
-};
+});

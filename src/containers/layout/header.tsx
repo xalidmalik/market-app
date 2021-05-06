@@ -1,10 +1,10 @@
 import { Box, Container, Text } from "@chakra-ui/layout";
 import { Svg } from "assets/svgs";
-import React from "react";
+import React, { memo } from "react";
 import { useSelector } from "react-redux";
 import { BasketSelector } from "store/selectors/basket";
 
-export const Header = () => {
+export const Header = memo(() => {
   const { total } = useSelector(BasketSelector.State);
 
   return (
@@ -36,4 +36,4 @@ export const Header = () => {
       </Container>
     </Box>
   );
-};
+});

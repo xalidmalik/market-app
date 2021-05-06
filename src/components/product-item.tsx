@@ -1,12 +1,12 @@
 import { Button } from "@chakra-ui/button";
 import { Box, Text, VStack } from "@chakra-ui/layout";
 import { Skeleton, SkeletonText } from "@chakra-ui/skeleton";
-import React from "react";
+import React, { memo } from "react";
 import { useDispatch } from "react-redux";
 import { addToBasketSaga } from "store/slices/basket";
 import { ProductType } from "store/types/product";
 
-export const ProductItem = (product: ProductType) => {
+export const ProductItem = memo((product: ProductType) => {
   const dispatch = useDispatch();
 
   const handleAddToBasket = () => {
@@ -44,9 +44,9 @@ export const ProductItem = (product: ProductType) => {
       </Button>
     </VStack>
   );
-};
+});
 
-export const ProductSkeleton = () => {
+export const ProductSkeleton = memo(() => {
   return (
     <VStack align="flex-start" spacing="2">
       <Box
@@ -66,4 +66,4 @@ export const ProductSkeleton = () => {
       <Skeleton width="100%" height="32px" borderRadius="md" />
     </VStack>
   );
-};
+});
