@@ -5,15 +5,18 @@ import { Spinner } from "@chakra-ui/spinner";
 import { BoxContainer } from "components/box-container";
 import { useScroll } from "hooks/useScroll";
 import { useSearch } from "hooks/useSearch";
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BrandSelector } from "store/selectors/brand";
+import { ProductSelector } from "store/selectors/product";
 import { setBrand } from "store/slices/product";
 
 export const Brands = memo(() => {
   const { data, isLoading } = useSelector(BrandSelector.State);
+  const { filtering } = useSelector(ProductSelector.State);
   const { handleScroll, showTag } = useScroll();
   const { result, setSearch } = useSearch(data);
+  const [value, setValue] = useState<string>("All");
   const dispatch = useDispatch();
 
   const Loader = isLoading && (
@@ -62,8 +65,18 @@ export const Brands = memo(() => {
         />
         <CheckboxGroup
           colorScheme="green"
-          defaultValue={[]}
-          onChange={(change: Array<string>) => dispatch(setBrand(change))}
+          defaultValue={["All"]}
+          value={value ? [value] : filtering.brands}
+          onChange={(change: Array<string>) => {
+            if (change.length > 1 && change[0] === "All") {
+              setValue("");
+              change.shift();
+              dispatch(setBrand(change));
+            } else if (change.length === 0 || change.includes("All")) {
+              setValue("All");
+            }
+            dispatch(setBrand(change));
+          }}
         >
           <VStack
             alignItems="flex-start"

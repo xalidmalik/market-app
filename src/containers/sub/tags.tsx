@@ -5,15 +5,18 @@ import { Spinner } from "@chakra-ui/spinner";
 import { BoxContainer } from "components/box-container";
 import { useScroll } from "hooks/useScroll";
 import { useSearch } from "hooks/useSearch";
-import React, { memo } from "react";
+import React, { memo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { ProductSelector } from "store/selectors/product";
 import { TagSelector } from "store/selectors/tag";
 import { setTag } from "store/slices/product";
 
 export const Tags = memo(() => {
   const { data, isLoading } = useSelector(TagSelector.State);
+  const { filtering } = useSelector(ProductSelector.State);
   const { handleScroll, showTag } = useScroll();
   const { result, setSearch } = useSearch(data);
+  const [value, setValue] = useState<string>("All");
   const dispatch = useDispatch();
 
   const Loader = isLoading && (
@@ -58,7 +61,7 @@ export const Tags = memo(() => {
     >
       <VStack spacing="4" align="flex-start">
         <Input
-          placeholder="Search Brand"
+          placeholder="Search Tag"
           colorScheme="cyan"
           size="lg"
           fontSize="14px"
@@ -67,8 +70,18 @@ export const Tags = memo(() => {
         />
         <CheckboxGroup
           colorScheme="green"
-          defaultValue={[]}
-          onChange={(change: Array<string>) => dispatch(setTag(change))}
+          defaultValue={["All"]}
+          value={value ? [value] : filtering.tags}
+          onChange={(change: Array<string>) => {
+            if (change.length > 1 && change[0] === "All") {
+              setValue("");
+              change.shift();
+              dispatch(setTag(change));
+            } else if (change.length === 0 || change.includes("All")) {
+              setValue("All");
+            }
+            dispatch(setTag(change));
+          }}
         >
           <VStack
             alignItems="flex-start"

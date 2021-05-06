@@ -38,5 +38,16 @@ export const useSearch = (data: Array<TagType | BrandManipulatedStateType>) => {
     }
   }, [data, search]);
 
+  useEffect(() => {
+    if (result.length !== 0) {
+      let total = 0;
+      result && result.map((item) => (total += item.quantity));
+      if (result[0].name !== "All") {
+        const newResult = [{ name: "All", quantity: total }, ...result];
+        setResult(newResult);
+      }
+    }
+  }, [result]);
+
   return { result, setSearch };
 };
