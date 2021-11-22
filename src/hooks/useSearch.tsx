@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { ProductSelector } from "store/selectors/product";
 import { BrandManipulatedStateType } from "store/types/brand";
 import { TagType } from "store/types/tags";
 
 export const useSearch = (data: Array<TagType | BrandManipulatedStateType>) => {
+  const { total_data } = useSelector(ProductSelector.Info);
   const [search, setSearch] = useState<string>("");
   const [result, setResult] = useState<
     Array<TagType | BrandManipulatedStateType>
@@ -47,7 +50,7 @@ export const useSearch = (data: Array<TagType | BrandManipulatedStateType>) => {
         setResult(newResult);
       }
     }
-  }, [result]);
+  }, [result, total_data]);
 
   return { result, setSearch };
 };

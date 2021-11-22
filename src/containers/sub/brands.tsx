@@ -86,8 +86,7 @@ export const Brands = memo(() => {
             spacing="4"
             onScroll={(val) => handleScroll(val)}
           >
-            {List}
-            {Loader}
+            {!isLoading ? List : Loader}
           </VStack>
         </CheckboxGroup>
       </VStack>
